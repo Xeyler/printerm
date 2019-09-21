@@ -1,6 +1,8 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
+#include "text2vector.h"
+
 FT_Library library;
 FT_Face face;
 int err;
@@ -20,7 +22,7 @@ int init(char *filepathname, int face_index) {
 	return 0;
 }
 
-void get_vector_from_char(FT_ULong charcode) {
+FT_Outline get_vector_from_char(FT_ULong charcode) {
 	int glyph_index = FT_Get_Char_Index(face, charcode);
 	if(glyph_index == 0) {
 		printf("FT_Get_Char_Index(%lu) returned 0", charcode);
